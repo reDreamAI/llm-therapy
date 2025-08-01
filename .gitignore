@@ -1,0 +1,5 @@
+# Files to ignore when using git
+
+# Protect API keys from getting public:
+.env 
+
