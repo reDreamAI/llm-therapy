@@ -1,4 +1,4 @@
-# LLM Dialogue 🤖
+# LLM Dialogue
 
 A powerful tool for creating conversations between different AI language models. Watch as two LLMs engage in thoughtful dialogue, responding to each other for multiple rounds.
 
@@ -133,24 +133,24 @@ llm-dialogue/
 ## Example Output
 
 ```
-🤖 LLM Dialogue
-Starting dialogue between GPT-4 and Claude-3
+LLM Dialogue
+Starting dialogue between kimi k2 and qwen3
 Rounds: 10
 
 User: Hello! Let's have an interesting conversation about artificial intelligence and its future.
 
 🔄 Round 1
 
-┌─ Round 1 - GPT-4 ──────────────────────────────────────────────┐
+┌─ Round 1 - kimi ────────────────────────────────────────────────┐
 │ I'd be happy to discuss AI and its future! This is a fascinating│
-│ topic that touches on technology, philosophy, economics, and   │
-│ society. What specific aspect would you like to explore?       │
+│ topic that touches on technology, philosophy, economics, and    │
+│ society. What specific aspect would you like to explore?        │
 └─────────────────────────────────────────────────────────────────┘
 
-┌─ Round 1 - Claude-3 ───────────────────────────────────────────┐
-│ That's a great topic! I think the most interesting aspect is   │
-│ how AI will transform human work and creativity. What are your │
-│ thoughts on AI augmentation vs replacement?                    │
+┌─ Round 1 - qwen ────────────────────────────────────────────────┐
+│ That's a great topic! I think the most interesting aspect is    │
+│ how AI will transform human work and creativity. What are your  │
+│ thoughts on AI augmentation vs replacement?                     │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
