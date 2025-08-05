@@ -54,12 +54,12 @@ python main.py start --interactive
 
 #### Direct Mode
 ```bash
-python main.py start --llm1 kimi-k2 --llm2 gpt-4o --rounds 10 --message "Let's discuss the future of AI"
+python main.py start --llm1 kimi-k2 --llm2 qwen3 --rounds 10 --message "Let's discuss the future of AI"
 ```
 
 #### Save Conversation
 ```bash
-python main.py start --llm1 kimi-k2 --llm2 gpt-4o --save
+python main.py start --llm1 kimi-k2 --llm2 qwen3 --save
 ```
 
 ## Usage Examples
@@ -67,7 +67,7 @@ python main.py start --llm1 kimi-k2 --llm2 gpt-4o --save
 ### Basic Dialogue
 ```bash
 # Start a 10-round conversation between GPT-4 and Claude-3
-python main.py start --llm1 kimi-k2 --llm2 gpt-4o
+python main.py start --llm1 kimi-k2 --llm2 qwen3
 ```
 
 ### Custom Topic
@@ -75,7 +75,7 @@ python main.py start --llm1 kimi-k2 --llm2 gpt-4o
 # Discuss a specific topic
 python main.py start \
   --llm1 kimi-k2 \
-  --llm2 gpt-4o \
+  --llm2 qwen3 \
   --message "What are the ethical implications of artificial general intelligence?" \
   --rounds 15
 ```
