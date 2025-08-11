@@ -8,6 +8,7 @@ import os
 
 from config import DialogueConfig, get_llm_config
 from llm_providers import create_llm_provider
+from judge_model import ConversationJudge
 
 console = Console()
 
@@ -19,6 +20,7 @@ class DialogueManager:
         self.llm1 = create_llm_provider(get_llm_config(llm1_name))
         self.llm2 = create_llm_provider(get_llm_config(llm2_name))
         self.conversation_history: List[Dict[str, Any]] = []
+        self.judge = ConversationJudge()
         
     def add_system_message(self, message: str):
         """Add a system message to the conversation"""
@@ -139,6 +141,10 @@ class DialogueManager:
             border_style="bold green"
         ))
         
+        # Evaluate the conversation
+        console.print()
+        self.evaluate_conversation()
+        
         return self.conversation_history
         
     def save_conversation(self, filename: str = None):
@@ -161,6 +167,16 @@ class DialogueManager:
             for msg in self.conversation_history:
                 f.write(f"{msg['speaker']}: {msg['content']}\n\n")
         
+    def evaluate_conversation(self):
+        """Evaluate the conversation using the judge model"""
+        try:
+            evaluation = self.judge.judge_conversation(self.conversation_history)
+            self.judge.display_evaluation(evaluation)
+            return evaluation
+        except Exception as e:
+            console.print(f"[red]Error evaluating conversation: {e}[/red]")
+            return None
+    
     def get_conversation_summary(self) -> Dict[str, Any]:
         """Get a summary of the conversation"""
         return {

@@ -12,6 +12,8 @@ from rich import print as rprint
 
 from config import DEFAULT_LLMS, DialogueConfig
 from dialogue_manager import DialogueManager
+from judge_model import ConversationJudge
+import os
 
 app = typer.Typer()
 console = Console()
@@ -166,6 +168,56 @@ def setup():
         title="Setup Instructions",
         border_style="bold yellow"
     ))
+
+@app.command()
+def evaluate(
+    file_path: str = typer.Argument(..., help="Path to the conversation file to evaluate")
+):
+    """Evaluate an existing conversation using the judge model"""
+    if not os.path.exists(file_path):
+        console.print(f"[red]Error: File {file_path} not found[/red]")
+        raise typer.Exit(1)
+    
+    # Read the conversation file
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+        
+        # Parse the conversation into the expected format
+        conversation_history = []
+        lines = content.split('\n\n')
+        
+        # Skip the first two lines which contain metadata
+        for i, line in enumerate(lines[2:], start=1):
+            if line.strip():
+                # Try to parse speaker and content
+                if ':' in line:
+                    parts = line.split(':', 1)
+                    speaker = parts[0].strip()
+                    message_content = parts[1].strip()
+                    
+                    # Determine role based on speaker
+                    if speaker == "User":
+                        role = "user"
+                    elif speaker.startswith("System"):
+                        role = "system"
+                    else:
+                        role = "assistant"
+                    
+                    conversation_history.append({
+                        "role": role,
+                        "content": message_content,
+                        "speaker": speaker
+                    })
+        
+        # Create judge and evaluate
+        judge = ConversationJudge()
+        evaluation = judge.judge_conversation(conversation_history)
+        judge.display_evaluation(evaluation)
+        
+    except Exception as e:
+        console.print(f"[red]Error evaluating conversation: {str(e)}[/red]")
+        raise typer.Exit(1)
 
 if __name__ == "__main__":
     app() 

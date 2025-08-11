@@ -3,3 +3,8 @@
 # Protect API keys from getting public:
 .env 
 
+# Ignore Python cache files:
+__pycache__
+*.pyc
+
+
