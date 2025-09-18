@@ -16,7 +16,7 @@ console = Console()
 class ConversationJudge:
     """Evaluates and scores conversations between LLMs"""
     
-    def __init__(self, judge_model_name: str = "gpt-4o"):
+    def __init__(self, judge_model_name: str = "kimi-k2"):
         """Initialize the judge with a specific model"""
         try:
             config = get_llm_config(judge_model_name)
@@ -74,7 +74,28 @@ Be thorough but concise in your evaluation. Focus on the quality of the interact
                 evaluation = json.loads(response)
                 return evaluation
             except json.JSONDecodeError:
-                # If JSON parsing fails, create a structured response
+                # If direct JSON parsing fails, try to extract JSON from the response
+                try:
+                    # Look for JSON block in the response (common with LLMs)
+                    import re
+                    json_match = re.search(r'```(?:json)?\s*({.*?})\s*```', response, re.DOTALL)
+                    if json_match:
+                        json_str = json_match.group(1)
+                        evaluation = json.loads(json_str)
+                        return evaluation
+                    
+                    # If no JSON block found, try to find JSON object directly
+                    json_match = re.search(r'{.*}', response, re.DOTALL)
+                    if json_match:
+                        json_str = json_match.group(0)
+                        # Try to fix common JSON issues
+                        json_str = json_str.replace('"""', '"').replace("'''", '"')
+                        evaluation = json.loads(json_str)
+                        return evaluation
+                except (json.JSONDecodeError, ValueError):
+                    pass
+                
+                # If all parsing fails, create a structured response
                 return self._parse_text_response(response)
                 
         except Exception as e:

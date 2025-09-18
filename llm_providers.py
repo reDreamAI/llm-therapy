@@ -20,11 +20,11 @@ class OpenAIProvider(BaseLLMProvider):
     
     def __init__(self, config: LLMConfig):
         super().__init__(config)
-        openai.api_key = config.api_key
+        self.client = openai.OpenAI(api_key=config.api_key)
         
     def generate_response(self, messages: List[Dict[str, str]]) -> str:
         try:
-            response = openai.ChatCompletion.create(
+            response = self.client.chat.completions.create(
                 model=self.config.model,
                 messages=messages,
                 temperature=self.config.temperature,

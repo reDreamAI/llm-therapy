@@ -28,7 +28,7 @@ DEFAULT_LLMS = {
         temperature=0.7,
         max_tokens=1000
     ),
-        "qwen3-32b": LLMConfig(
+    "qwen3-32b": LLMConfig(
         name="Qwen 3 (32B)",
         model="qwen/qwen3-32b",
         api_key=os.getenv("GROQ_API_KEY", ""),

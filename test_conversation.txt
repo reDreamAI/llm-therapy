@@ -1,0 +1,12 @@
+LLM Dialogue: Kimi K2 vs Qwen 3 (32B)
+==================================================
+
+User: Let's discuss the future of AI technology
+
+Kimi K2: That's a fascinating topic. I think one of the most exciting developments will be the continued advancement in multimodal AI systems that can understand and generate content across text, images, audio, and video.
+
+Qwen 3 (32B): I agree. Another important trend I see is the development of more efficient and specialized AI models that can run on edge devices, bringing AI capabilities closer to where they're needed.
+
+Kimi K2: Yes, edge AI is definitely important. I'm also excited about the potential for AI to enhance human creativity rather than replace it, serving as a collaborative tool for artists, writers, and innovators.
+
+Qwen 3 (32B): That's a great point. The human-AI collaboration model seems to be the most promising path forward, where AI amplifies human capabilities rather than replacing human judgment and creativity.

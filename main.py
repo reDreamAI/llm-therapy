@@ -22,7 +22,7 @@ console = Console()
 def start(
     llm1: str = typer.Option("kimi-k2", "--llm1", "-1", help="First LLM (kimi-k2, qwen3-32b, llama-3.3-70b, gpt-4o, claude-3.5-sonnet)"),
     llm2: str = typer.Option("qwen3-32b", "--llm2", "-2", help="Second LLM (kimi-k2, qwen3-32b, llama-3.3-70b, gpt-4o, claude-3.5-sonnet)"),
-    rounds: int = typer.Option(10, "--rounds", "-r", help="Number of dialogue rounds"),
+    rounds: int = typer.Option(2, "--rounds", "-r", help="Number of dialogue rounds"),
     message: str = typer.Option(None, "--message", "-m", help="Initial message to start the conversation"),
     save: bool = typer.Option(False, "--save", "-s", help="Save conversation to file"),
     interactive: bool = typer.Option(False, "--interactive", "-i", help="Interactive mode")
